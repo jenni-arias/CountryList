@@ -2,8 +2,11 @@ package com.example.jariasgallego.countrylist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,5 +30,16 @@ public class CountryListActivity extends AppCompatActivity {
         // todos los ListViews tienen un Adaptador
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, country_list);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View item, int pos, long id) {
+                Toast.makeText(
+                        CountryListActivity.this,
+                        String.format("Has escogido: '%s'", country_list.get(pos)),
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
     }
 }
